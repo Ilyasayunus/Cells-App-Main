@@ -7,8 +7,8 @@
     <title>CELLS | UPI</title>
 
     <!-- Favicons -->
-    <link href="/landing_assets/assets/img/dpr-ri.svg" rel="icon" />
-    <link href="/landing_assets/assets/img/dpr-ri.svg" rel="apple-touch-icon" />
+    <link href="/landing_assets/assets/img/logoUPI.png" rel="icon" />
+    <link href="/landing_assets/assets/img/logoUPI.png" rel="apple-touch-icon" />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
