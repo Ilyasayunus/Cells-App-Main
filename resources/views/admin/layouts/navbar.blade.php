@@ -11,8 +11,8 @@
           <li class="nav-item d-none d-sm-inline-block @if (Request::is('admin/news')) active @endif">
               <a href="/admin/news" class="nav-link">Berita</a>
           </li>
-          <li class="nav-item d-none d-sm-inline-block @if (Request::is('admin/indikator')) active @endif">
-              <a href="/admin/indikator" class="nav-link">Carousel</a>
+          <li class="nav-item d-none d-sm-inline-block @if (Request::is('admin/carousels')) active @endif">
+              <a href="/admin/carousels" class="nav-link">Carousel</a>
           </li>
           <li class="nav-item d-none d-sm-inline-block  @if (Request::is('admin/penilaian')) active @endif">
               <a href="/admin/penilaian" class="nav-link">Profile</a>
