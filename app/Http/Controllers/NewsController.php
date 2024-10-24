@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -16,7 +15,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('admin.news.index', [
-            'title' => 'Halaman Berita',
+            'title' => 'Halaman News',
             'data' => News::all()
         ]);
     }
@@ -26,12 +25,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view(
-            'admin.news.create',
-            [
-                'title' => 'Halaman Tambah Berita'
-            ]
-        );
+        return view('admin.news.create', [
+            'title' => 'Halaman Tambah News'
+        ]);
     }
 
     /**
@@ -46,11 +42,12 @@ class NewsController extends Controller
             'body' => 'required'
         ]);
 
+        // Handle file upload
         if ($request->file('gambar')) {
-            $validatedData['gambar'] = $request->file('gambar')->store('news-image');
+            $validatedData['gambar'] = $request->file('gambar')->store('news-image', 'public');
         }
 
-        $validatedData['excerpt'] = str_replace(['<div>', '</div>'], '', Str::limit($request->body, 200, '...'));
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
         $validatedData['created_by'] = auth()->user()->username;
 
         News::create($validatedData);
@@ -63,13 +60,10 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        return view(
-            'admin.news.show',
-            [
-                'title' => 'Detail Berita',
-                'data' => $news,
-            ]
-        );
+        return view('admin.news.show', [
+            'title' => 'Detail News',
+            'data' => $news
+        ]);
     }
 
     /**
@@ -77,13 +71,10 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        return view(
-            'admin.news.edit',
-            [
-                'title' => 'Halaman Edit Berita',
-                'data' => $news,
-            ]
-        );
+        return view('admin.news.edit', [
+            'title' => 'Halaman Edit News',
+            'data' => $news
+        ]);
     }
 
     /**
@@ -103,17 +94,18 @@ class NewsController extends Controller
 
         $validatedData = $request->validate($rules);
 
+        // Handle file upload and delete old file
         if ($request->file('gambar')) {
-            if ($request->oldGambar) {
-                Storage::delete($request->oldGambar);
+            if ($request->oldgambar) {
+                Storage::delete('public/' . $request->oldgambar);
             }
-            $validatedData['gambar'] = $request->file('gambar')->store('news-image');
+            $validatedData['gambar'] = $request->file('gambar')->store('news-image', 'public');
         }
 
-        $validatedData['excerpt'] = str_replace(['<div>', '</div>'], '', Str::limit($request->body, 200, '...'));
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
         $validatedData['updated_by'] = auth()->user()->username;
 
-        news::where('id', $news->id)->update($validatedData);
+        News::where('id', $news->id)->update($validatedData);
 
         return redirect('/admin/news')->with('success', 'Data Berhasil diupdate!');
     }
@@ -123,17 +115,21 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
+        // Delete associated image
         if ($news->gambar) {
-            Storage::delete($news->gambar);
+            Storage::delete('public/' . $news->gambar);
         }
+
         News::destroy($news->id);
         return redirect('/admin/news')->with('success', 'Data Berhasil Dihapus!');
     }
 
+    /**
+     * Generate a slug from title.
+     */
     public function createSlug(Request $request)
     {
-        $slug = SlugService::createSlug(News::class, 'slug', $request->title);
-
+        $slug = Str::slug($request->title);
         return response()->json(['slug' => $slug]);
     }
 }
