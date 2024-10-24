@@ -61,7 +61,7 @@ class NewsController extends Controller
     public function show(News $news)
     {
         return view('admin.news.show', [
-            'title' => 'Detail News',
+            'title' => 'Detail Berita',
             'data' => $news
         ]);
     }
@@ -72,7 +72,7 @@ class NewsController extends Controller
     public function edit(News $news)
     {
         return view('admin.news.edit', [
-            'title' => 'Halaman Edit News',
+            'title' => 'Halaman Edit Berita',
             'data' => $news
         ]);
     }
