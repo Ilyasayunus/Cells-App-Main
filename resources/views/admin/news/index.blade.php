@@ -1,11 +1,11 @@
 @extends('admin.layouts.main')
+
 @section('container')
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">DataTable with default features</h3>
             <div class="card-tools">
-                <a href="/admin/news/create" class="btn btn-xs btn-primary"><i class="fas fa-plus-circle"></i>
-                    Buat Berita</a>
+                <a href="/admin/news/create" class="btn btn-xs btn-primary"><i class="fas fa-plus-circle"></i> Buat Berita</a>
             </div>
         </div>
         <!-- /.card-header -->
@@ -24,16 +24,14 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->judul }}</td>
                             <td>
-                                <a href="/admin/news/{{ $item->slug }}" class="btn btn-success"><i
-                                        class="fas fa-eye"></i></a>
-                                <a href="/admin/news/{{ $item->slug }}/edit" class="btn btn-primary"><i
-                                        class="fas fa-pencil-alt"></i></a>
-                                <form action="/admin/news/{{ $item->slug }}" method="post" class="d-inline ">
+                                <a href="/admin/news/{{ $item->slug }}" class="btn btn-success"><i class="fas fa-eye"></i></a>
+                                <a href="/admin/news/{{ $item->slug }}/edit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                <form action="/admin/news/{{ $item->slug }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
-                                    <button type="submit" class="btn btn-danger border-0"
-                                        onclick="return confirm('yakin hapus data?')"><i
-                                            class="fas fa-trash-alt"></i></button>
+                                    <button type="submit" class="btn btn-danger border-0" onclick="return confirm('yakin hapus data?')">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

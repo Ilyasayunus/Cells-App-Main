@@ -1,4 +1,5 @@
 @extends('admin.layouts.main')
+
 @section('container')
     <div class="row">
         <div class="col-lg-8">
@@ -16,9 +17,10 @@
                     <input type="hidden" class="form-control @error('slug') is-invalid @enderror" id="slug"
                         name="slug" value="{{ old('slug') }}">
                 </div>
+
                 <div class="mb-3">
                     <label for="gambar" class="form-label">Gambar</label>
-                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                    <img class="img-preview img-fluid mb-3 col-sm-5" style="display: none;">
                     <input class="form-control @error('gambar') is-invalid @enderror" type="file" id="gambar"
                         name="gambar" onchange="previewImage()">
                     @error('gambar')
@@ -27,6 +29,7 @@
                         </div>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="body" class="form-label">Body</label>
                     <input id="body" type="hidden" name="body" value="{{ old('body') }}">
@@ -37,6 +40,7 @@
                         </p>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <a href="/admin/news" class="btn btn-xs btn-primary">Kembali</a>
                     <button type="submit" class="btn btn-success">Submit</button>
@@ -45,6 +49,7 @@
         </div>
     </div>
 @endsection
+
 @section('js')
     <script>
         const title = document.querySelector('#judul');
@@ -71,7 +76,6 @@
             oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
             }
-
         }
     </script>
 @endsection
