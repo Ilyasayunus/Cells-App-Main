@@ -43,18 +43,29 @@
                   </li>
                   <li class="nav-item">
                     <a href="/admin/carousels" class="nav-link {{ Request::is('admin/carousels') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-bullhorn"></i>
+                        <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Carousel
                         </p>
                     </a>
-                    <li class="nav-item">
-                        <a href="/admin/profiles" class="nav-link {{ Request::is('admin/profiles') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-bullhorn"></i>
-                            <p>
-                                Profile
-                            </p>
-                        </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/admin/highlight" class="nav-link {{ Request::is('admin/highlight') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-marker"></i>
+                        <p>
+                            Highlight
+                        </p>
+                    </a>
+                </li>
+                  <li class="nav-item">
+                    <a href="/admin/profile" class="nav-link {{ Request::is('admin/profile') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
+                    
                 {{-- </li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">
