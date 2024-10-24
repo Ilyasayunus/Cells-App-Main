@@ -87,7 +87,7 @@
 
         <footer class="main-footer">
             <div class="copyright">
-                &copy; 2024 <strong><span>Sekretariat Jenderal DPR RI</span></strong>. All Rights Reserved
+                &copy; 2024 <strong><span>DIPPU CELLS-UPI</span></strong>. All Rights Reserved
             </div>
         </footer>
 
