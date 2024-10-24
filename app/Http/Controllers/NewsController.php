@@ -15,7 +15,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('admin.news.index', [
-            'title' => 'Halaman News',
+            'title' => 'Halaman Berita',
             'data' => News::all()
         ]);
     }
@@ -26,7 +26,7 @@ class NewsController extends Controller
     public function create()
     {
         return view('admin.news.create', [
-            'title' => 'Halaman Tambah News'
+            'title' => 'Halaman Tambah Berita'
         ]);
     }
 
